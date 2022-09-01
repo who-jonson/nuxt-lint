@@ -1,0 +1,85 @@
+{
+  "name": "@whoj/name",
+  "description": "",
+  "version": "0.0.1",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "nuxt",
+    "starter",
+    "typescript",
+    "nuxt typescript",
+    "nuxt module starter"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "module": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.8"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nuxt/module-builder": "latest",
+    "@nuxt/test-utils": "^3.0.0-rc.8",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@testing-library/vue": "^6.6.1",
+    "@types/node": "latest",
+    "@vitest/ui": "latest",
+    "@whoj/utils-core": "latest",
+    "bumpp": "latest",
+    "core-js": "latest",
+    "cross-env": "latest",
+    "eslint": "latest",
+    "npm-run-all": "latest",
+    "nuxt": "^3.0.0-rc.8",
+    "typescript": "^4.8.2",
+    "vite": "latest",
+    "vitest": "latest",
+    "vue": "latest",
+    "webpack": "latest"
+  },
+  "packageManager": "pnpm@7.9.5",
+  "author": {
+    "name": "Jonson B.",
+    "email": "www.jbc.bd@gmail.com",
+    "url": "https://who-jonson.github.io"
+  },
+  "funding": "https://github.com/sponsors/who-jonson",
+  "homepage": "https://github.com/who-jonson/name#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/who-jonson/name.git"
+  },
+  "bugs": "https://github.com/who-jonson/name/issues",
+  "sideEffects": false
+}
