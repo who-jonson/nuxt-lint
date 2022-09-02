@@ -1,15 +1,17 @@
 {
-  "name": "@whoj/name",
+  "name": "@whoj/nuxt-lint",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.0",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "nuxt",
-    "starter",
+    "lint",
+    "eslint",
+    "stylelint",
     "typescript",
-    "nuxt typescript",
-    "nuxt module starter"
+    "nuxt eslint",
+    "nuxt stylelint"
   ],
   "exports": {
     ".": {
@@ -34,39 +36,85 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
-    "lint": "eslint .",
-    "prepublishOnly": "nr build",
-    "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "prepublishOnly": "rm -rf dist && pnpm run lint && pnpm build",
+    "release": "bumpp --no-commit --no-push && pnpm run clint && pnpm publish",
     "test": "vitest",
+    "clint": "git-cz",
+    "lint": "eslint \"{**/*,*}.{ts,tsx,vue}\" --fix",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.8"
+    "@nuxt/kit": "^3.0.0-rc.8",
+    "@whoj/manage-pkg": "^0.1.2",
+    "eslint-webpack-plugin": "^3.2.0",
+    "stylelint-webpack-plugin": "^3.3.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-stylelint": "^3.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@commitlint/cz-commitlint": "latest",
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "^3.0.0-rc.8",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@testing-library/vue": "^6.6.1",
     "@types/node": "latest",
     "@vitest/ui": "latest",
-    "@whoj/utils-core": "latest",
+    "@whoj/utils": "^0.0.6",
     "bumpp": "latest",
+    "commitizen": "latest",
     "core-js": "latest",
     "cross-env": "latest",
-    "eslint": "latest",
-    "npm-run-all": "latest",
+    "eslint": "8.22.0",
+    "husky": "latest",
+    "inquirer": "^8.2.4",
     "nuxt": "^3.0.0-rc.8",
+    "postcss-html": "^1.5.0",
+    "sass": "^1.54.6",
+    "stylelint": "^14.11.0",
+    "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^28.0.0",
     "typescript": "^4.8.2",
     "vite": "latest",
     "vitest": "latest",
     "vue": "latest",
     "webpack": "latest"
+  },
+  "peerDependencies": {
+    "eslint": "^8.0.0",
+    "postcss": "^8.0.0",
+    "postcss-html": "^1.0.0",
+    "stylelint": "^14.0.0",
+    "vite": "^2.0.0 || ^3.0.0",
+    "webpack": "^4.0.0 || ^5.0.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@vue/compiler-sfc",
+        "vue",
+        "vite",
+        "postcss",
+        "webpack"
+      ]
+    }
+  },
+  "peerDependenciesMeta": {
+    "sass": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    }
   },
   "packageManager": "pnpm@7.9.5",
   "author": {
@@ -75,11 +123,19 @@
     "url": "https://who-jonson.github.io"
   },
   "funding": "https://github.com/sponsors/who-jonson",
-  "homepage": "https://github.com/who-jonson/name#readme",
+  "homepage": "https://github.com/who-jonson/nuxt-lint#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/who-jonson/name.git"
+    "url": "git+https://github.com/who-jonson/nuxt-lint.git"
   },
-  "bugs": "https://github.com/who-jonson/name/issues",
-  "sideEffects": false
+  "bugs": "https://github.com/who-jonson/nuxt-lint/issues",
+  "sideEffects": false,
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
