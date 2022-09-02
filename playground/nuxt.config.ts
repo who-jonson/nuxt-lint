@@ -1,11 +1,10 @@
-import { defineNuxtConfig } from 'nuxt'
-import WhojModule from '..'
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
   modules: [
-    WhojModule
+    './../src/module'
   ],
-  whojModule: {
-    addPlugin: true
+  lint: {
+    buildMode: true
   }
-})
+});
