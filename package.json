@@ -1,6 +1,6 @@
 {
   "name": "@whoj/nuxt-lint",
-  "description": "",
+  "description": "Nuxt module for Eslint & Stylelint",
   "version": "1.0.0-beta.0",
   "type": "module",
   "license": "MIT",
@@ -40,7 +40,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "prepublishOnly": "rm -rf dist && pnpm build",
-    "release": "bumpp --no-commit --no-push && pnpm run clint && pnpm publish",
+    "release": "bumpp --execute=\"pnpm run clint\" && pnpm publish",
     "test": "vitest",
     "clint": "git-cz",
     "lint": "eslint \"{**/*,*}.{ts,tsx,vue}\" --fix",
